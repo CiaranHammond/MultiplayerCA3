@@ -23,7 +23,7 @@ private:
 	SFRenderManager();
 
 	void RenderUI();
-	void RenderShadows();
+	//void RenderShadows();
 	void UpdateView();
 	void RenderTexturedWorld();
 

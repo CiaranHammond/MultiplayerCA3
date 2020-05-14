@@ -1,1 +1,16 @@
-﻿  RoboCatClient.vcxproj -> C:\Users\mypc\Desktop\ShadowMultiplayer\ShadowMultiplayer\Debug\RoboCatClient.exe
+﻿  SFTextureManager.cpp
+  TexturedWorld.cpp
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(35,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(37,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(43,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(43,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(49,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(49,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(55,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(55,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(61,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(61,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(67,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\TexturedWorld.cpp(67,23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  RoboCatClient.vcxproj -> C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\Debug\RoboCatClient.exe

@@ -45,19 +45,25 @@ bool TexturedWorld::loadSprites()
 			}
 			else if (texWorld.getPixel(i, j) == sf::Color::Blue)
 			{
-				spr.setTexture(*SFTextureManager::sInstance->GetTexture("stone"));
+				spr.setTexture(*SFTextureManager::sInstance->GetTexture("grass_blood"));
 				spr.setPosition(i * tileSize, j * tileSize);
 				m_spriteTiles.push_back(spr);
 			}
 			else if (texWorld.getPixel(i, j) == sf::Color::Red)
 			{
-				spr.setTexture(*SFTextureManager::sInstance->GetTexture("wood"));
+				spr.setTexture(*SFTextureManager::sInstance->GetTexture("tile_blood"));
 				spr.setPosition(i * tileSize, j * tileSize);
 				m_spriteTiles.push_back(spr);
 			}
 			else if (texWorld.getPixel(i, j) == sf::Color::Green)
 			{
 				spr.setTexture(*SFTextureManager::sInstance->GetTexture("grass"));
+				spr.setPosition(i * tileSize, j * tileSize);
+				m_spriteTiles.push_back(spr);
+			}
+			else if (texWorld.getPixel(i, j) == sf::Color::Black)
+			{
+				spr.setTexture(*SFTextureManager::sInstance->GetTexture("wood"));
 				spr.setPosition(i * tileSize, j * tileSize);
 				m_spriteTiles.push_back(spr);
 			}
