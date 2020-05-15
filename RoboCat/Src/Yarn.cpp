@@ -88,18 +88,18 @@ void Yarn::InitFromShooter( RoboCat* inShooter )
 	SetPlayerId( inShooter->GetPlayerId() );
 	SetPlayerTeam(inShooter->GetPlayerTeam());
 	
-		Vector3 forward = inShooter->GetForwardVector();
-		Vector3 vel = inShooter->GetVelocity();
-		auto normVel = thor::unitVector(sf::Vector2f(vel.mX, vel.mY));
-		sf::Vector2f temp = sf::Vector2f(0, -1);
-		thor::rotate(temp, inShooter->GetRotation());
+	Vector3 forward = inShooter->GetForwardVector();
+	Vector3 vel = inShooter->GetVelocity();
+	auto normVel = thor::unitVector(sf::Vector2f(vel.mX, vel.mY));
+	sf::Vector2f temp = sf::Vector2f(0, -1);
+	thor::rotate(temp, inShooter->GetRotation());
 
-		//SetVelocity(Vector3(normVel.x, normVel.y, 0) * mMuzzleSpeed);
+	//SetVelocity(Vector3(normVel.x, normVel.y, 0) * mMuzzleSpeed);
 
-		SetVelocity(Vector3(temp.x, temp.y, 0) * mMuzzleSpeed);
-		SetLocation(inShooter->GetLocation() /*+ Vector3(temp.x,temp.y,0) * 0.55f*/);
+	SetVelocity(Vector3(temp.x, temp.y, 0) * mMuzzleSpeed);
+	SetLocation(inShooter->GetLocation() /*+ Vector3(temp.x,temp.y,0) * 0.55f*/);
 
-		SetRotation(inShooter->GetRotation());
+	SetRotation(inShooter->GetRotation());
 	
 	
 }

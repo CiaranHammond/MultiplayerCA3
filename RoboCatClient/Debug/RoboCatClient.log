@@ -9,4 +9,24 @@ C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\SFRenderM
           [
               T=float
           ]
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\SFRenderManger.cpp(187,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\SFRenderManger.cpp(187,22): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\SFRenderManger.cpp(208,36): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCatClient\Src\SFRenderManger.cpp(208,22): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
   RoboCatClient.vcxproj -> C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\Debug\RoboCatClient.exe

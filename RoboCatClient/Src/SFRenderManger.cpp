@@ -166,7 +166,7 @@ sf::Vector2f SFRenderManager::NumberofAliveCats()
 	return sf::Vector2f(aliveCats, numberOfCats);
 }
 
-/*sf::Vector2f SFRenderManager::NumberOfAliveHumans()
+sf::Vector2f SFRenderManager::NumberOfAliveHumans()
 {
 	int numberOfHumans = 0;
 	int aliveHumans = 0;
@@ -176,7 +176,7 @@ sf::Vector2f SFRenderManager::NumberofAliveCats()
 		if (obj->GetClassId() == catID)
 		{
 			RoboCat* cat = dynamic_cast<RoboCat*>(obj.get());
-			if (cat->GetPlayerTeam().compare("human"))
+			if (cat->GetPlayerTeam().compare("zombie"))
 			{
 				numberOfHumans++;
 				if (cat->GetHealth() > 0)
@@ -184,6 +184,7 @@ sf::Vector2f SFRenderManager::NumberofAliveCats()
 			}
 		}
 	}
+	return sf::Vector2f(aliveHumans, numberOfHumans);
 }
 
 sf::Vector2f SFRenderManager::NumberOfAliveZombies()
@@ -196,7 +197,7 @@ sf::Vector2f SFRenderManager::NumberOfAliveZombies()
 		if (obj->GetClassId() == catID)
 		{
 			RoboCat* cat = dynamic_cast<RoboCat*>(obj.get());
-			if (cat->GetPlayerTeam().compare("zombies"))
+			if (cat->GetPlayerTeam().compare("human"))
 			{
 				numberOfZombies++;
 				if (cat->GetHealth() > 0)
@@ -204,7 +205,8 @@ sf::Vector2f SFRenderManager::NumberOfAliveZombies()
 			}
 		}
 	}
-}*/
+	return sf::Vector2f(aliveZombies, numberOfZombies);
+}
 
 void SFRenderManager::StaticInit()
 {
@@ -297,11 +299,10 @@ void SFRenderManager::Render()
 		{
 			// We are the last man standing.
 			sf::Vector2f cats = NumberofAliveCats();
-			//sf::Vector2f humans = NumberOfAliveHumans();
-			//sf::Vector2f zombies = NumberOfAliveZombies();
+			sf::Vector2f humans = NumberOfAliveHumans();
+			sf::Vector2f zombies = NumberOfAliveZombies();
 			
-			if (cats.x == 1.f && FindCatHealth() > 0 && 
-				ScoreBoardManager::sInstance->GetEntry(NetworkManagerClient::sInstance->GetPlayerId())->GetScore() > 0)
+			if ((humans.x > 0 && zombies.x <= 0) /*&& (humans.y > 0 && zombies.y > 0)*/ || (zombies.x > 0 && humans.x <= 0) /*&& (zombies.y > 0 && humans.y > 0)*/)
 			{
 				// Draw some you are the winner screen.
 				sf::Vector2f winner(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);
