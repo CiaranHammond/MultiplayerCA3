@@ -15,8 +15,10 @@ SFTextureManager::SFTextureManager()
 	CacheTexture("tile", "../Assets/tile.png");
 	CacheTexture("tile_blood", "../Assets/tile_blood.png");
 	CacheTexture("grass_blood", "../Assets/grass_blood.png");
+	CacheTexture("stone", "../Assets/stone.png");
 	CacheTexture("grass", "../Assets/grass.png");
 	CacheTexture("wood", "../Assets/wood.png");
+	CacheTexture("box", "../Assets/box.png");
 	CacheTexture("start_screen", "../Assets/start_screen.png");
 	CacheTexture("died_screen", "../Assets/died_screen.png");
 	CacheTexture("winner_screen", "../Assets/winner_screen.png");

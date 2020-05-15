@@ -166,7 +166,7 @@ sf::Vector2f SFRenderManager::NumberofAliveCats()
 	return sf::Vector2f(aliveCats, numberOfCats);
 }
 
-sf::Vector2f SFRenderManager::NumberOfAliveHumans()
+/*sf::Vector2f SFRenderManager::NumberOfAliveHumans()
 {
 	int numberOfHumans = 0;
 	int aliveHumans = 0;
@@ -204,7 +204,7 @@ sf::Vector2f SFRenderManager::NumberOfAliveZombies()
 			}
 		}
 	}
-}
+}*/
 
 void SFRenderManager::StaticInit()
 {
@@ -297,8 +297,8 @@ void SFRenderManager::Render()
 		{
 			// We are the last man standing.
 			sf::Vector2f cats = NumberofAliveCats();
-			sf::Vector2f humans = NumberOfAliveHumans();
-			sf::Vector2f zombies = NumberOfAliveZombies();
+			//sf::Vector2f humans = NumberOfAliveHumans();
+			//sf::Vector2f zombies = NumberOfAliveZombies();
 			
 			if (cats.x == 1.f && FindCatHealth() > 0 && 
 				ScoreBoardManager::sInstance->GetEntry(NetworkManagerClient::sInstance->GetPlayerId())->GetScore() > 0)
