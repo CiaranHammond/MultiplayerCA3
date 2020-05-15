@@ -63,7 +63,7 @@ void RoboCatServer::Update()
 void RoboCatServer::HandleShooting()
 {
 	float time = Timing::sInstance.GetFrameStartTime();
-	if( mIsShooting && Timing::sInstance.GetFrameStartTime() > mTimeOfNextShot )
+	if( mIsShooting && Timing::sInstance.GetFrameStartTime() > mTimeOfNextShot /*&& !GetPlayerTeam().compare("human")*/)
 	{
 		//not exact, but okay
 		mTimeOfNextShot = time + mTimeBetweenShots;

@@ -1,3 +1,5 @@
 daryl:4
 rosita:5
 negan:6
+sasha:2
+rick:3

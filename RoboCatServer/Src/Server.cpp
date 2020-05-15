@@ -132,7 +132,6 @@ void Server::SpawnCatForPlayer( int inPlayerId )
 	cat->SetColor( ScoreBoardManager::sInstance->GetEntry( inPlayerId )->GetColor() );
 	cat->SetPlayerId( inPlayerId );
 	cat->SetPlayerTeam(ScoreBoardManager::sInstance->GetEntry(inPlayerId)->GetPlayerTeam());
-	LOG("Player Team: %s", ScoreBoardManager::sInstance->GetEntry(inPlayerId)->GetPlayerTeam().c_str());
 	
 	// Pick one of a few random locations.
 	int randomIndex = rand() % m_spawnPoints.size();
