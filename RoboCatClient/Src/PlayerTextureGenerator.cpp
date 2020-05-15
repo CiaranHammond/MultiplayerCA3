@@ -4,7 +4,7 @@ std::unique_ptr<PlayerTextureGenerator> PlayerTextureGenerator::sInstance;
 
 PlayerTextureGenerator::PlayerTextureGenerator()
 {
-	m_playerTextureIDs = {
+	m_humanTextureIDs = {
 		"hitman", 
 		"hatman",
 		"man_blue",
@@ -12,20 +12,31 @@ PlayerTextureGenerator::PlayerTextureGenerator()
 		"man_old",
 		"robot",
 		"soldier",
-		"woman",
+		"woman"
+	};
+
+	m_zombieTextureIDs = {
 		"zombie"
 	};
 }
 
-SFTexturePtr PlayerTextureGenerator::GetPlayerTexure(uint32_t p_id)
+SFTexturePtr PlayerTextureGenerator::GetPlayerTexure(uint32_t p_id, std::string& p_team)
 {
-	
-	return SFTextureManager::sInstance->GetTexture(ResolveID(p_id));
+
+	return SFTextureManager::sInstance->GetTexture(ResolveID(p_id, p_team));
 }
 
-std::string PlayerTextureGenerator::ResolveID(uint32_t p_id)
+std::string PlayerTextureGenerator::ResolveID(uint32_t p_id, std::string& p_team)
 {
-	return m_playerTextureIDs[p_id % m_playerTextureIDs.size()];
+	if (p_team.compare("human"))
+	{
+		return m_zombieTextureIDs[0];
+	}
+	else 
+	{
+
+		return m_humanTextureIDs[p_id % m_humanTextureIDs.size()];
+	}
 }
 
 bool PlayerTextureGenerator::StaticInit()

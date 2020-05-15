@@ -62,6 +62,9 @@ void NetworkManagerClient::SendOutgoingPackets()
 	case NCS_Welcomed:
 		UpdateSendingInputPacket();
 		break;
+	case NCS_Lobby:
+		UpdateLobbyPacket();
+		break;
 	}
 }
 
@@ -86,16 +89,28 @@ void NetworkManagerClient::SendHelloPacket()
 	SendPacket( helloPacket, mServerAddress );
 }
 
+void NetworkManagerClient::UpdateLobbyPacket()
+{
+	OutputMemoryBitStream lobbyPacket;
+	lobbyPacket.Write(kLobbyCC);
+	lobbyPacket.Write(mPlayerId);
+
+	SendPacket(lobbyPacket, mServerAddress);
+}
+
 void NetworkManagerClient::HandleWelcomePacket( InputMemoryBitStream& inInputStream )
 {
 	if( mState == NCS_SayingHello )
 	{
 		//if we got a player id, we've been welcomed!
 		int playerId;
+		string playerTeam;
 		inInputStream.Read( playerId );
+		inInputStream.Read(playerTeam);
 		mPlayerId = playerId;
+		mPlayerTeam = playerTeam;
 		mState = NCS_Welcomed;
-		LOG( "'%s' was welcomed on client as player %d", mName.c_str(), mPlayerId );
+		LOG( "'%s' was welcomed on client as player %d in team %s", mName.c_str(), mPlayerId, mPlayerTeam.c_str() );
 	}
 }
 

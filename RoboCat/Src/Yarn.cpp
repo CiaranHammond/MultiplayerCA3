@@ -86,6 +86,7 @@ void Yarn::InitFromShooter( RoboCat* inShooter )
 {
 	SetColor( inShooter->GetColor() );
 	SetPlayerId( inShooter->GetPlayerId() );
+	SetPlayerTeam(inShooter->GetPlayerTeam());
 	
 
 	Vector3 forward = inShooter->GetForwardVector();

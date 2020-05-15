@@ -22,8 +22,10 @@ public:
 	void			SetVelocity( const Vector3& inVelocity )	{ mVelocity = inVelocity; }
 	const Vector3&	GetVelocity() const					{ return mVelocity; }
 
-	void		SetPlayerId( int inPlayerId )	{ mPlayerId = inPlayerId; }
-	int			GetPlayerId() const				{ return mPlayerId; }
+	void			SetPlayerId( int inPlayerId )		{ mPlayerId = inPlayerId; }
+	void			SetPlayerTeam( std::string inPlayerTeam )	{ mPlayerTeam = inPlayerTeam; }
+	int				GetPlayerId() const					{ return mPlayerId; }
+	std::string		GetPlayerTeam() const				{ return mPlayerTeam; }
 
 	void		InitFromShooter( RoboCat* inShooter );
 
@@ -39,6 +41,7 @@ protected:
 
 	float		mMuzzleSpeed;
 	int			mPlayerId;
+	std::string mPlayerTeam;
 
 };
 

@@ -27,7 +27,7 @@ void PersistantPlayerSprites::Load()
 	}
 }
 
-void PersistantPlayerSprites::AddPlayerEntry(std::string p_name, int p_id)
+void PersistantPlayerSprites::AddPlayerEntry(std::string p_name, int p_id, string p_team)
 {
 	// See if it's already in the map.
 	if (m_idMaps.find(p_name) != m_idMaps.end())

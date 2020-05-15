@@ -1,2 +1,3 @@
-ronan:6Ciaran:2
-Ciaran:2
+daryl:4
+rosita:5
+negan:6

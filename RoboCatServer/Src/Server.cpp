@@ -121,7 +121,7 @@ void Server::HandleNewClient( ClientProxyPtr inClientProxy )
 	
 	int playerId = inClientProxy->GetPlayerId();
 	
-	ScoreBoardManager::sInstance->AddEntry( playerId, inClientProxy->GetName() );
+	ScoreBoardManager::sInstance->AddEntry(playerId, inClientProxy->GetName(), inClientProxy->GetTeam() );
 	SpawnCatForPlayer( playerId );
 
 }
@@ -131,6 +131,8 @@ void Server::SpawnCatForPlayer( int inPlayerId )
 	RoboCatPtr cat = std::static_pointer_cast< RoboCat >( GameObjectRegistry::sInstance->CreateGameObject( 'RCAT' ) );
 	cat->SetColor( ScoreBoardManager::sInstance->GetEntry( inPlayerId )->GetColor() );
 	cat->SetPlayerId( inPlayerId );
+	cat->SetPlayerTeam(ScoreBoardManager::sInstance->GetEntry(inPlayerId)->GetPlayerTeam());
+	LOG("Player Team: %s", ScoreBoardManager::sInstance->GetEntry(inPlayerId)->GetPlayerTeam().c_str());
 	
 	// Pick one of a few random locations.
 	int randomIndex = rand() % m_spawnPoints.size();

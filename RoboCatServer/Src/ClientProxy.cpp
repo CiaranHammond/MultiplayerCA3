@@ -5,9 +5,10 @@ namespace
 	const float kRespawnDelay = 3.f;
 }
 
-ClientProxy::ClientProxy( const SocketAddress& inSocketAddress, const string& inName, int inPlayerId ) :
+ClientProxy::ClientProxy( const SocketAddress& inSocketAddress, const string& inName, const string& inTeam, int inPlayerId ) :
 mSocketAddress( inSocketAddress ),
 mName( inName ),
+mTeam(inTeam),
 mPlayerId( inPlayerId ),
 mDeliveryNotificationManager( false, true ),
 mIsLastMoveTimestampDirty( false ),

@@ -7,7 +7,7 @@ public:
 	static std::unique_ptr<PersistantPlayerSprites> sInstance;
 
 	void Load();
-	void AddPlayerEntry(std::string p_name, int p_id);
+	void AddPlayerEntry(std::string p_name, int p_id, std::string p_team);
 	int GetID(std::string p_name);
 
 private:

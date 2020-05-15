@@ -30,7 +30,7 @@ void RoboCatClient::Update()
 	// Check if we need to set the texture.
 	if (m_textureIsDirty)
 	{
-		m_sprite->SetTexture(PlayerTextureGenerator::sInstance->GetPlayerTexure(GetPlayerId()));
+		m_sprite->SetTexture(PlayerTextureGenerator::sInstance->GetPlayerTexure(GetPlayerId(), GetPlayerTeam()));
 		m_textureIsDirty = false;
 	}
 
@@ -78,8 +78,11 @@ void RoboCatClient::Read( InputMemoryBitStream& inInputStream )
 	if( stateBit )
 	{
 		uint32_t playerId;
+		string playerTeam;
 		inInputStream.Read( playerId );
+		inInputStream.Read(playerTeam);
 		SetPlayerId( playerId );
+		SetPlayerTeam(playerTeam);
 		readState |= ECRS_PlayerId;
 	}
 

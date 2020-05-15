@@ -21,7 +21,7 @@ void SoundManager::LoadSoundFromFile(sf::Sound &p_sound, sf::SoundBuffer &p_buff
 	if (p_buffer.loadFromFile(p_file))
 	{
 		p_sound.setBuffer(p_buffer);
-		p_sound.setVolume(35);
+		p_sound.setVolume(20);
 	}
 }
 

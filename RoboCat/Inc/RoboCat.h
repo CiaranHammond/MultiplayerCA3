@@ -28,7 +28,9 @@ public:
 	void ProcessCollisions();
 
 	void		SetPlayerId( uint32_t inPlayerId )			{ mPlayerId = inPlayerId; }
+	void		SetPlayerTeam(std::string inPlayerTeam)		{ mPlayerTeam = inPlayerTeam; }
 	uint32_t	GetPlayerId()						const 	{ return mPlayerId; }
+	std::string GetPlayerTeam()						const { return mPlayerTeam; }
 
 	void			SetVelocity( const Vector3& inVelocity )	{ mVelocity = inVelocity; }
 	const Vector3&	GetVelocity()						const	{ return mVelocity; }
@@ -59,6 +61,7 @@ private:
 
 
 	uint32_t			mPlayerId;
+	std::string			mPlayerTeam;
 
 protected:
 

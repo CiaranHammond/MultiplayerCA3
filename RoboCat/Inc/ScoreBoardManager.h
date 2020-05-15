@@ -10,10 +10,11 @@ public:
 	public:
 		Entry() {};
 
-		Entry( uint32_t inPlayerID, const string& inPlayerName, const Vector3& inColor );
+		Entry( uint32_t inPlayerID, const string& inPlayerName, const string& inPlayerTeam, const Vector3& inColor );
 
 		const Vector3&	GetColor()		const	{ return mColor; }
 		uint32_t		GetPlayerId()	const	{ return mPlayerId; }
+		const string	GetPlayerTeam() const	{ return mPlayerTeam; }
 		const string&	GetPlayerName()	const	{ return mPlayerName; }
 		const string&	GetFormattedNameScore()	const	{ return mFormattedNameScore; }
 		int				GetScore()		const	{ return mScore; }
@@ -28,6 +29,7 @@ public:
 		
 		uint32_t		mPlayerId;
 		string			mPlayerName;
+		string			mPlayerTeam;
 		
 		int				mScore;
 
@@ -36,7 +38,7 @@ public:
 
 	Entry*	GetEntry( uint32_t inPlayerId );
 	bool	RemoveEntry( uint32_t inPlayerId );
-	void	AddEntry( uint32_t inPlayerId, const string& inPlayerName );
+	void	AddEntry( uint32_t inPlayerId, const string& inPlayerName, const string& inPlayerTeam);
 	void	IncScore( uint32_t inPlayerId, int inAmount );
 
 	bool	Write( OutputMemoryBitStream& inOutputStream ) const;

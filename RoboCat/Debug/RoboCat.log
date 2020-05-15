@@ -1,1 +1,4 @@
-﻿  RoboCat.vcxproj -> C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCat\Bin\Debug\RoboCat.lib
+﻿  RoboCat.cpp
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCat\Src\RoboCat.cpp(69,15): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCat\Src\RoboCat.cpp(22,35): warning C4100: 'inDeltaTime': unreferenced formal parameter
+  RoboCat.vcxproj -> C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCat\Bin\Debug\RoboCat.lib

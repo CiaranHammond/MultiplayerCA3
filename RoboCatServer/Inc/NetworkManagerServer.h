@@ -37,6 +37,8 @@ private:
 
 			void	HandleInputPacket( ClientProxyPtr inClientProxy, InputMemoryBitStream& inInputStream );
 
+			void	SendLobbyResponsePacket(ClientProxyPtr inClientProxy, InputMemoryBitStream& inInputStream);
+
 			void	HandleClientDisconnected( ClientProxyPtr inClientProxy );
 
 			int		GetNewNetworkId();

@@ -64,6 +64,8 @@ void NetworkManagerServer::ProcessPacket( ClientProxyPtr inClientProxy, InputMem
 			HandleInputPacket( inClientProxy, inInputStream );
 		}
 		break;
+	case kLobbyCC:
+		SendLobbyResponsePacket(inClientProxy, inInputStream);
 	default:
 		LOG( "Unknown packet type received from %s", inClientProxy->GetSocketAddress().ToString().c_str() );
 		break;
@@ -80,6 +82,7 @@ void NetworkManagerServer::HandlePacketFromNewClient( InputMemoryBitStream& inIn
 	{
 		//read the name
 		string name;
+		string team;
 		inInputStream.Read( name );
 
 		// Check if there is a perfered ID type for this player.
@@ -98,11 +101,21 @@ void NetworkManagerServer::HandlePacketFromNewClient( InputMemoryBitStream& inIn
 		}
 		int id = mNewPlayerId;
 		
-		ClientProxyPtr newClientProxy = std::make_shared< ClientProxy >( inFromAddress, name, id );
+		if (id % 3 == 0)
+		{
+			team = "human";
+		}
+		else
+		{
+			team = "zombie";
+		}
+
+		ClientProxyPtr newClientProxy = std::make_shared< ClientProxy >( inFromAddress, name, team, id );
 		mAddressToClientMap[ inFromAddress ] = newClientProxy;
 		mPlayerIdToClientMap[ newClientProxy->GetPlayerId() ] = newClientProxy;
 
-		PersistantPlayerSprites::sInstance->AddPlayerEntry(name, id);
+		
+		PersistantPlayerSprites::sInstance->AddPlayerEntry(name, id, team);
 		
 		//tell the server about this client, spawn a cat, etc...
 		//if we had a generic message system, this would be a good use for it...
@@ -131,10 +144,21 @@ void NetworkManagerServer::SendWelcomePacket( ClientProxyPtr inClientProxy )
 
 	welcomePacket.Write( kWelcomeCC );
 	welcomePacket.Write( inClientProxy->GetPlayerId() );
+	welcomePacket.Write(inClientProxy->GetTeam());
 
-	LOG( "Server Welcoming, new client '%s' as player %d", inClientProxy->GetName().c_str(), inClientProxy->GetPlayerId() );
+	LOG( "Server Welcoming, new client '%s' as player %d on team %s", inClientProxy->GetName().c_str(), inClientProxy->GetPlayerId(), inClientProxy->GetTeam().c_str() );
 
 	SendPacket( welcomePacket, inClientProxy->GetSocketAddress() );
+}
+
+void NetworkManagerServer::SendLobbyResponsePacket(ClientProxyPtr inClientProxy, InputMemoryBitStream& inInputStream)
+{
+	OutputMemoryBitStream lobbyResponsePacket;
+
+	lobbyResponsePacket.Write(kLobbyCC);
+	lobbyResponsePacket.Write(inClientProxy->GetPlayerId());
+
+	SendPacket(lobbyResponsePacket, inClientProxy->GetSocketAddress());
 }
 
 void NetworkManagerServer::RespawnCats()

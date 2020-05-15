@@ -7,7 +7,8 @@ class NetworkManagerClient : public NetworkManager
 	{
 		NCS_Uninitialized,
 		NCS_SayingHello,
-		NCS_Welcomed
+		NCS_Welcomed,
+		NCS_Lobby
 	};
 
 public:
@@ -22,6 +23,7 @@ public:
 			const	WeightedTimedMovingAverage&		GetAvgRoundTripTime()	const	{ return mAvgRoundTripTime; }
 			float									GetRoundTripTime()		const	{ return mAvgRoundTripTime.GetValue(); }
 			int		GetPlayerId()											const	{ return mPlayerId; }
+			string	GetPlayerTeam()											const	{ return mPlayerTeam; }
 			float	GetLastMoveProcessedByServerTimestamp()					const	{ return mLastMoveProcessedByServerTimestamp; }
 private:
 			NetworkManagerClient();
@@ -40,6 +42,8 @@ private:
 			void	UpdateSendingInputPacket();
 			void	SendInputPacket();
 
+			void	UpdateLobbyPacket();
+
 			void	DestroyGameObjectsInMap( const IntToGameObjectMap& inObjectsToDestroy );
 
 
@@ -56,6 +60,7 @@ private:
 
 	string				mName;
 	int					mPlayerId;
+	string				mPlayerTeam;
 
 	float				mLastMoveProcessedByServerTimestamp;
 
