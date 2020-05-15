@@ -122,5 +122,8 @@
     <ClInclude Include="Inc\PlayerTextureGenerator.h">
       <Filter>Inc</Filter>
     </ClInclude>
+    <ClInclude Include="Src\SFRenderManger.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

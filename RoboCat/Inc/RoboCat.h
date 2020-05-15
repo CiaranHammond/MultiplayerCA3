@@ -60,7 +60,7 @@ private:
 	float				mCatRestitution;
 
 
-	uint32_t			mPlayerId;
+	uint8_t			mPlayerId;
 	std::string			mPlayerTeam;
 
 protected:

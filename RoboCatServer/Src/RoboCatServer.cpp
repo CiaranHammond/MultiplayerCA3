@@ -60,10 +60,19 @@ void RoboCatServer::Update()
 
 }
 
+bool RoboCatServer::HandleCollisionWithCat(RoboCat* inCat)
+{
+	if (inCat->GetPlayerTeam().compare("human") && GetPlayerTeam().compare("zombie"))
+	{
+		TakeDamage(inCat->GetPlayerId());
+	}
+	return false;
+}
+
 void RoboCatServer::HandleShooting()
 {
 	float time = Timing::sInstance.GetFrameStartTime();
-	if( mIsShooting && Timing::sInstance.GetFrameStartTime() > mTimeOfNextShot /*&& !GetPlayerTeam().compare("human")*/)
+	if( mIsShooting && Timing::sInstance.GetFrameStartTime() > mTimeOfNextShot && !GetPlayerTeam().compare("human"))
 	{
 		//not exact, but okay
 		mTimeOfNextShot = time + mTimeBetweenShots;

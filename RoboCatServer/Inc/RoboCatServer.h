@@ -12,6 +12,8 @@ public:
 
 	virtual void Update();
 
+	bool HandleCollisionWithCat(RoboCat* inCat);
+
 	void SetCatControlType( ECatControlType inCatControlType ) { mCatControlType = inCatControlType; }
 
 	void TakeDamage( int inDamagingPlayerId );

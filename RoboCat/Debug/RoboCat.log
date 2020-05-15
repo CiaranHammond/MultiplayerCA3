@@ -1,2 +1,4 @@
-﻿  ConnectionDetails.cpp
+﻿  SoundManager.cpp
   RoboCat.vcxproj -> C:\Users\mypc\Desktop\Multiplayer CA3\MultiplayerCA3\RoboCat\Bin\Debug\RoboCat.lib
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets(4274,5): warning MSB3026: Could not copy "Debug\RoboCat.pdb" to "Bin\Debug\RoboCat.pdb". Beginning retry 1 in 1000ms. The requested operation cannot be performed on a file with a user-mapped section open.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets(4274,5): warning MSB3026:  

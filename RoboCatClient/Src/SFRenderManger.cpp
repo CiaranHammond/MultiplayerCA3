@@ -1,4 +1,5 @@
 #include <RoboCatClientPCH.h>
+#include "SFRenderManger.h"
 
 std::unique_ptr< SFRenderManager >	SFRenderManager::sInstance;
 
@@ -14,23 +15,40 @@ SFRenderManager::SFRenderManager()
 
 void SFRenderManager::RenderUI()
 {
+	sf::Vector2f humans = NumberOfAliveHumans();
+	sf::Vector2f zombies = NumberOfAliveZombies();
+
 	sf::Font bebas = *FontManager::sInstance->GetFont("bebas");
 
-	sf::Text RTT, InOut;
+	sf::Text RTT, InOut, humanScores, zombieScores;
 
 	sf::Vector2f basePos(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);
 
 	RTT.setPosition(basePos.x + 20, basePos.y + 20);
 	InOut.setPosition(basePos.x + 120, basePos.y + 20);
+	humanScores.setPosition(basePos.x + 20, basePos.y + 50);
+	zombieScores.setPosition(basePos.x + 20, basePos.y + 70);
 
 	RTT.setFont(bebas);
 	InOut.setFont(bebas);
+	humanScores.setFont(bebas);
+	zombieScores.setFont(bebas);
 
 	RTT.setCharacterSize(24);
 	InOut.setCharacterSize(24);
+	humanScores.setCharacterSize(24);
+	zombieScores.setCharacterSize(24);
 	
 	RTT.setFillColor(sf::Color::Red);
 	InOut.setFillColor(sf::Color::Red);
+	humanScores.setFillColor(sf::Color::White);
+	zombieScores.setFillColor(sf::Color::White);
+
+	string humanCount = StringUtils::Sprintf("Humans Remaining: %d", (int)humans.x);
+	humanScores.setString(humanCount);
+
+	string zombieCount = StringUtils::Sprintf("Zombies Remaining: %d", (int)zombies.x);
+	zombieScores.setString(zombieCount);
 	
 	// RTT
 	float rttMS = NetworkManagerClient::sInstance->GetAvgRoundTripTime().GetValue() * 1000.f;
@@ -47,6 +65,8 @@ void SFRenderManager::RenderUI()
 	// Draw the text to screen.
 	SFWindowManager::sInstance->draw(RTT);
 	SFWindowManager::sInstance->draw(InOut);
+	SFWindowManager::sInstance->draw(humanScores);
+	SFWindowManager::sInstance->draw(zombieScores);
 }
 
 //void SFRenderManager::RenderShadows()
@@ -302,12 +322,39 @@ void SFRenderManager::Render()
 			sf::Vector2f humans = NumberOfAliveHumans();
 			sf::Vector2f zombies = NumberOfAliveZombies();
 			
-			if ((humans.x > 0 && zombies.x <= 0) /*&& (humans.y > 0 && zombies.y > 0)*/ || (zombies.x > 0 && humans.x <= 0) /*&& (zombies.y > 0 && humans.y > 0)*/)
+			if ((humans.x > 0 && zombies.x <= 0) /*&& (humans.y > 0 && zombies.y > 0)*/)
 			{
 				// Draw some you are the winner screen.
 				sf::Vector2f winner(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);
 				m_winnerScreen.setPosition(winner);
 				SFWindowManager::sInstance->draw(m_winnerScreen);
+				
+				string team = "human";
+				AddWinToFile(team);
+
+				//Add win to file
+				/*std::ofstream outFile("../Assets/Saved/HumanWins.txt", std::ofstream::out | std::ofstream::app);
+				if (outFile.good())
+				{
+					outFile << "Wins: " << std::endl;
+				}*/
+			}
+			else if ((zombies.x > 0 && humans.x <= 0) /*&& (zombies.y > 0 && humans.y > 0)*/)
+			{
+				// Draw some you are the winner screen.
+				sf::Vector2f winner(view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2);
+				m_winnerScreen.setPosition(winner);
+				SFWindowManager::sInstance->draw(m_winnerScreen);
+
+				string team = "zombie";
+				AddWinToFile(team);
+
+				//Add win to file
+				/*std::ofstream outFile("../Assets/Saved/ZombieWins.txt", std::ofstream::out | std::ofstream::app);
+				if (outFile.good())
+				{
+					outFile << "Wins: " << std::endl;
+				}*/
 			}
 		}
 	}
@@ -320,4 +367,27 @@ void SFRenderManager::Render()
 
 	// Present our back buffer to our front buffer
 	SFWindowManager::sInstance->display();
+}
+
+bool AddWinToFile(string winningTeam)
+{
+	if (winningTeam.compare("human"))
+	{
+		std::ofstream outFile("../Assets/Saved/HumanWins.txt", std::ofstream::out | std::ofstream::app);
+		if (outFile.good())
+		{
+			outFile << "Wins: " << std::endl;
+		}
+		return true;
+	}
+	else if (winningTeam.compare("zombie"))
+	{
+		std::ofstream outFile("../Assets/Saved/ZombieWins.txt", std::ofstream::out | std::ofstream::app);
+		if (outFile.good())
+		{
+			outFile << "Wins: " << std::endl;
+		}
+		return true;
+	}
+	return false;
 }
