@@ -29,6 +29,8 @@ private:
 
 	uint8_t FindCatHealth();
 	sf::Vector2f NumberofAliveCats();
+	sf::Vector2f NumberOfAliveHumans();
+	sf::Vector2f NumberOfAliveZombies();
 
 	//this can't be only place that holds on to component- it has to live inside a GameObject in the world
 	vector< SFSpriteComponent* > mComponents;

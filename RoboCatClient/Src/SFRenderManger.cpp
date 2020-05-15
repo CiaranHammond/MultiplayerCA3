@@ -166,6 +166,46 @@ sf::Vector2f SFRenderManager::NumberofAliveCats()
 	return sf::Vector2f(aliveCats, numberOfCats);
 }
 
+sf::Vector2f SFRenderManager::NumberOfAliveHumans()
+{
+	int numberOfHumans = 0;
+	int aliveHumans = 0;
+	uint32_t catID = (uint32_t)'RCAT';
+	for (auto obj : World::sInstance->GetGameObjects())
+	{
+		if (obj->GetClassId() == catID)
+		{
+			RoboCat* cat = dynamic_cast<RoboCat*>(obj.get());
+			if (cat->GetPlayerTeam().compare("human"))
+			{
+				numberOfHumans++;
+				if (cat->GetHealth() > 0)
+					aliveHumans++;
+			}
+		}
+	}
+}
+
+sf::Vector2f SFRenderManager::NumberOfAliveZombies()
+{
+	int numberOfZombies = 0;
+	int aliveZombies = 0;
+	uint32_t catID = (uint32_t)'RCAT';
+	for (auto obj : World::sInstance->GetGameObjects())
+	{
+		if (obj->GetClassId() == catID)
+		{
+			RoboCat* cat = dynamic_cast<RoboCat*>(obj.get());
+			if (cat->GetPlayerTeam().compare("zombies"))
+			{
+				numberOfZombies++;
+				if (cat->GetHealth() > 0)
+					aliveZombies++;
+			}
+		}
+	}
+}
+
 void SFRenderManager::StaticInit()
 {
 	sInstance.reset(new SFRenderManager());
@@ -257,7 +297,8 @@ void SFRenderManager::Render()
 		{
 			// We are the last man standing.
 			sf::Vector2f cats = NumberofAliveCats();
-
+			sf::Vector2f humans = NumberOfAliveHumans();
+			sf::Vector2f zombies = NumberOfAliveZombies();
 			
 			if (cats.x == 1.f && FindCatHealth() > 0 && 
 				ScoreBoardManager::sInstance->GetEntry(NetworkManagerClient::sInstance->GetPlayerId())->GetScore() > 0)
